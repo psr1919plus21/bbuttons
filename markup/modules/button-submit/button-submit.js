@@ -5,6 +5,7 @@ btns = Object.keys(btns).map(key => btns[key]);
 const btnSubmitSettings = {
     background: ' #7caa2d',
     backgroundHover: '#6b991c',
+    backgroundActive: '#49770a',
     border: 'none',
     borderHover: 'none',
     borderRadius: '2px',
@@ -15,7 +16,7 @@ const btnSubmitSettings = {
     minHeight: '60px',
     outline: 'none',
     padding: '0 10px',
-    width: '100%'
+    width: '300px'
 };
 
 btns.forEach(button => {
@@ -23,6 +24,7 @@ btns.forEach(button => {
 
     let bgPreset = button.getAttribute('data-bg');
     let bgHoverPreset = button.getAttribute('data-bg-hover');
+    let bgActivePreset = button.getAttribute('data-bg-active');
     let borderPreset = button.getAttribute('data-border');
     let borderHoverPreset = button.getAttribute('data-border-hover');
     let brzPreset = button.getAttribute('data-brz');
@@ -58,5 +60,17 @@ btns.forEach(button => {
         btnStyle.border = borderPreset || btnSubmitSettings.border;
         btnStyle.background = bgPreset || btnSubmitSettings.background;
         btnStyle.color = colorPreset || btnSubmitSettings.color;
+    });
+
+    button.addEventListener('mousedown', () => {
+        // btnStyle.border = borderHoverPreset || btnSubmitSettings.borderHover;
+        btnStyle.background = bgActivePreset || btnSubmitSettings.backgroundActive;
+        // btnStyle.color = colorHoverPreset || btnSubmitSettings.colorHover;
+    });
+
+    button.addEventListener('mouseup', () => {
+        btnStyle.border = borderHoverPreset || btnSubmitSettings.borderHover;
+        btnStyle.background = bgHoverPreset || btnSubmitSettings.backgroundHover;
+        btnStyle.color = colorHoverPreset || btnSubmitSettings.colorHover;
     });
 });
